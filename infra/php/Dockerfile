@@ -10,6 +10,8 @@ RUN apt-get update && apt-get -y install libpq-dev && apt-get install -y \
    unzip
 RUN apt-get -y install libzip-dev
 RUN docker-php-ext-install zip
+# pdo_mysql（mysqlのドライバ）をインストールする
+RUN docker-php-ext-install pdo_mysql
 
 COPY ./php.ini /usr/local/etc/php/php.ini
 

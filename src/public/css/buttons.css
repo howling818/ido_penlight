@@ -1,0 +1,178 @@
+@charset "UTF-8";
+.order-button-width {
+  width: 140px!important;
+}
+
+.btn-w-10 {
+    width:100px;
+}
+.btn-w-15 {
+    width:150px;
+}
+
+.menu-btn {
+    height: 50px;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    font-size: large;
+}
+
+.footer-btn {
+    width:150px;
+    height: 50px;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+}
+
+.btn-group-lg>.btn, .btn-xlg {
+    padding: 1rem 2rem;
+    font-size: 2rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+}
+
+.btn-group-lg>.btn, .btn-xxlg {
+    padding: 1rem 3rem 1rem;
+    font-size: 3rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+}
+
+.btn-group-lg>.btn, .nav-btn {
+    padding: 1rem 2rem 1rem;
+    font-size: 1.7rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+}
+
+.btn-group-lg>.btn, .btn-fixsize {
+    width: 200px;
+    padding: 0.5rem 1rem;
+    font-size: 2rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+}
+
+.btn-outline-order-day {
+    color:#6e737b;
+    background-color:#ffffff;
+    border-color:#bfbfbf
+}
+.btn-outline-order-day:hover{
+    color:#ffffff;
+    background-color:#f39800;
+    border-color:#f39800;
+}
+.btn-outline-order-day.focus,
+.btn-outline-order-day:focus{
+    box-shadow:0 0 0 .2rem rgba(255,193,7,.5)
+}
+.btn-outline-order-day.disabled,
+.btn-outline-order-day:disabled{
+    color:#f39800;
+    background-color:transparent;
+}
+.btn-outline-order-day:not(:disabled):not(.disabled).active,
+.btn-outline-order-day:not(:disabled):not(.disabled):active,
+.show>.btn-outline-order-day.dropdown-toggle{
+    color:#ffffff;
+    background-color:#f39800;
+    border-color:#f39800;
+}
+.btn-outline-order-day:not(:disabled):not(.disabled).active:focus,
+.btn-outline-order-day:not(:disabled):not(.disabled):active:focus,
+.show>.btn-outline-order-day.dropdown-toggle:focus{
+    box-shadow:0 0 0 .2rem rgba(255,193,7,.5);
+}
+
+.btn-outline-order-night{
+    color:#6e737b;
+    background-color:#ffffff;
+    border-color:#bfbfbf;
+}
+.btn-outline-order-night:hover{
+    color:#fff;
+    background-color:#00a497;
+    border-color:#00a497;
+}
+.btn-outline-order-night.focus,
+.btn-outline-order-night:focus{
+    box-shadow:0 0 0 .2rem rgba(23,162,184,.5);
+}
+.btn-outline-order-night.disabled,
+.btn-outline-order-night:disabled{
+    color:#6e737b;
+    background-color:transparent;
+}
+.btn-outline-order-night:not(:disabled):not(.disabled).active,
+.btn-outline-order-night:not(:disabled):not(.disabled):active,
+.show>.btn-outline-order-night.dropdown-toggle{
+    color:#fff;
+    background-color:#00a497;
+    border-color:#00a497;
+}
+.btn-outline-order-night:not(:disabled):not(.disabled).active:focus,
+.btn-outline-order-night:not(:disabled):not(.disabled):active:focus,
+.show>.btn-outline-order-night.dropdown-toggle:focus{
+    box-shadow:0 0 0 .2rem rgba(23,162,184,.5);
+}
+
+.btn-outline-menu{
+    color:#0073ff;
+    background-color:#ffffff;
+    border-color:#0073ff;
+}
+.btn-outline-menu:hover{
+    color:#fff;
+    background-color:#0073ff;
+    border-color:#0073ff;
+}
+.btn-outline-menu.focus,
+.btn-outline-menu:focus{
+    box-shadow:0 0 0 .2rem rgba(23,162,184,.5);
+}
+.btn-outline-menu.disabled,
+.btn-outline-menu:disabled{
+    color:#0073ff;
+    background-color:transparent;
+}
+.btn-outline-menu:not(:disabled):not(.disabled).active,
+.btn-outline-menu:not(:disabled):not(.disabled):active,
+.show>.btn-outline-menu.dropdown-toggle{
+    color:#fff;
+    background-color:#0073ff;
+    border-color:#0073ff;
+}
+.btn-outline-menu:not(:disabled):not(.disabled).active:focus,
+.btn-outline-menu:not(:disabled):not(.disabled):active:focus,
+.show>.btn-outline-menu.dropdown-toggle:focus{
+    box-shadow:0 0 0 .2rem rgba(23,162,184,.5);
+}
+
+.btn-menu,
+.btn-menu:hover{
+    color:#ffffff;
+    background-color:#0073ff;
+    border-color:#0073ff;
+}
+
+.btn-anchor,
+.btn-anchor:hover{
+    color:#ffffff;
+    background-color:#005ccc;
+    border-color:#005ccc;
+}
+
+.btn-pickup,
+.btn-pickup:hover {
+    color:#ffffff;
+    background-color:#f39800;
+    border-color:#f39800;
+}
+
+.btn-pickuped,
+.btn-pickuped:hover {
+    color:#ffffff;
+    background-color:#6c757d;
+    border-color:#6c757d;
+}
