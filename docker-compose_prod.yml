@@ -1,0 +1,41 @@
+version: "3.9"
+services:
+  app:
+    build: ./infra/php
+    volumes:
+      - ./src:/data
+    privileged: true
+    restart: always
+
+  web:
+    image: nginx:1.20-alpine
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./src:/data
+      - ./infra/nginx/conf.d:/etc/nginx/conf.d
+      - /etc/letsencrypt:/etc/letsencrypt
+    working_dir: /data
+    privileged: true
+    restart: always
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./src:/data
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/lib/letsencrypt:/var/lib/letsencrypt
+    command: ["--version"]
+
+  db:
+    build: ./infra/postgre
+    volumes:
+      - db-store:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    privileged: true
+    restart: always
+
+volumes:
+  db-store:
