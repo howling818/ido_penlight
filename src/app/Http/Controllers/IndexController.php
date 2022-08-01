@@ -2,9 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\IdolGroup;
 
 class IndexController extends Controller
 {
-    //
+
+    public function index()
+    {
+        $idolGroupModels = new IdolGroup();
+
+        $idolGroupLists = $idolGroupModels->getList();
+
+        return view(
+            'index',
+            [
+                'pageName'          => '',
+                'pageFlg'           => 'Index',
+                'idolGroupLists'    => $idolGroupLists
+            ]
+        );
+    }
 }

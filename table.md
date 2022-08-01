@@ -3,6 +3,56 @@
     <thead>
         <tr>
             <td>tableName</td>
+            <td colspan="5">m_group</td>
+        </tr>
+        <tr>
+            <td>columName</td>
+            <td>dataType</td>
+            <td>dataStorage</td>
+            <td>default</td>
+            <td>Not Null</td>
+            <td>memo</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>id</td>
+            <td>int</td>
+            <td>11</td>
+            <td></td>
+            <td>●</td>
+            <td>auto inclement</td>
+        </tr>
+        <tr>
+            <td>group_name</td>
+            <td>varchar</td>
+            <td>255</td>
+            <td></td>
+            <td>●</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>is_display</td>
+            <td>tinyint</td>
+            <td>1</td>
+            <td>1</td>
+            <td>●</td>
+            <td>[1:表示 0:非表示]</td>
+        </tr>
+        <tr>
+            <td>is_active</td>
+            <td>tinyint</td>
+            <td>1</td>
+            <td>1</td>
+            <td>●</td>
+            <td>[0:削除済み]</td>
+        </tr>
+    </tbody>
+</table>
+<table>
+    <thead>
+        <tr>
+            <td>tableName</td>
             <td colspan="5">m_idol_group</td>
         </tr>
         <tr>

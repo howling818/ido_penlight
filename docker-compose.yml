@@ -34,7 +34,7 @@ services:
       - db-store:/var/lib/mysql
       - ./infra/mysql/my.cnf:/etc/mysql/my.cnf
     ports:
-      - 23306:3306
+      - 3306:3306
     tty: true
 
 volumes:

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\IdolGroup;
 
 class GroupController extends Controller
 {
@@ -23,7 +24,19 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        $idolGroupModels = new IdolGroup();
+
+        $idolGroupLists = $idolGroupModels->getList();
+
+        return view(
+            'group.add',
+            [
+                'pageName'          => 'グループ追加',
+                'pageFlg'           => 'Groups',
+                'subPageFlg'        => 'GroupsAdd',
+                'idolGroupLists'    => $idolGroupLists
+            ]
+        );
     }
 
     /**
