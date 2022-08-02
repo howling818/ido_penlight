@@ -16,7 +16,6 @@ class IdolGroup extends Model
         'group_name',
         'group_kana',
         'url',
-        'updated_userid'
     ];
 
     // グローバルスコープ定義
@@ -45,5 +44,23 @@ class IdolGroup extends Model
             ->get();
 
         return $data;
+    }
+
+    public function findById($idolGroupId)
+    {
+        $data = IdolGroup::find($idolGroupId);
+
+        return $data;
+    }
+
+    public function insert($request)
+    {
+        $entity = IdolGroup::create([
+            'group_name'    => $request->group_name,
+            'group_kana'    => $request->group_kana,
+            'url'           => $request->url,
+        ]);
+
+        return $entity->id;
     }
 }

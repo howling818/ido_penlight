@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('m_idol_group', function (Blueprint $table) {
             $table->unsignedInteger('id')->nullable(false)->autoIncrement()->comment('ID');
+            $table->unsignedInteger('group_id')->default(null)->nullable(true)->after('id');
             $table->string('group_name', 255);
             $table->string('group_kana', 255)->default(null)->nullable(true);
             $table->string('url', 255)->default(null)->nullable(true);

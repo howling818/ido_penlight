@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\IdolGroup;
+use Illuminate\Support\Facades\Log;
 
 class IndexController extends Controller
 {

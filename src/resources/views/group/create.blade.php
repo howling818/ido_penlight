@@ -10,7 +10,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
                         <li class="breadcrumb-item active">Add Group</li>
                         </ol>
                     </div><!-- /.col -->
@@ -35,15 +35,15 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="inputGroupName">Group Name <span class="text-danger">※Required</span></label>
-                                    <input type="text" class="form-control" id="inputGroupName" placeholder="Enter Group Name">
+                                    <input type="text" name="group_name" class="form-control" id="inputGroupName" placeholder="Enter Group Name">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputGroupKana">Group Kana</label>
-                                    <input type="text" class="form-control" id="inputGroupKana" placeholder="Enter Group Kana">
+                                    <input type="text" name="group_kana" class="form-control" id="inputGroupKana" placeholder="Enter Group Kana">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputGroupSiteURL">Group Office Site URL</label>
-                                    <input type="text" class="form-control" id="inputGroupSiteURL" placeholder="Enter Group Office Site URL">
+                                    <input type="text" name="url" class="form-control" id="inputGroupSiteURL" placeholder="Enter Group Office Site URL">
                                 </div>
                             </div>
                             <!-- /.card-body -->

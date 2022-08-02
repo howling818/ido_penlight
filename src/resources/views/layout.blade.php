@@ -9,26 +9,20 @@
 
     <title>Idol Penlight Search</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/datepicker-ja.js') }}"></script>
-    <script src="{{ asset('js/moment.min.js') }}"></script>
-    <script src="{{ asset('js/adminlte.min.js') }}"></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
 
     <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -57,16 +51,16 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ url('/group/create') }}" class="nav-link @if ($subPageFlg=='GropuAdd') active @endif">
+                                    <a href="{{ url('/group/create') }}" class="nav-link @if (isset($subPageFlg) && $subPageFlg=='GropuAdd') active @endif">
                                     <i class="fas fa-plus-circle nav-icon"></i>
                                     <p>Add Group</p>
                                     </a>
                                 </li>
                                 @foreach ($idolGroupLists as $idolGroup)
                                 <li class="nav-item">
-                                    <a href="{{ url('/group/list/'.$idolGroup.id) }}" class="nav-link @if ($subPageFlg=='GropuId-'.$idolGroup.id) active @endif">
+                                    <a href="{{ url('/member/?gid='.$idolGroup->id) }}" class="nav-link @if (isset($subPageFlg) && $subPageFlg=='GropuId-'.$idolGroup->id) active @endif">
                                     <i class="far fa-link nav-icon"></i>
-                                    <p>{{$idolGroup.group_name}}</p>
+                                    <p>{{$idolGroup->group_name}}</p>
                                     </a>
                                 </li>
                                 @endforeach
@@ -87,12 +81,26 @@
     <!-- /.content-wrapper -->
 
     <input type="hidden" id="url" value="{{ url('/') }}">
+
+    <!-- jQuery -->
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <!-- jQuery UI -->
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('js/adminlte.min.js') }}"></script>
     <script>
         $(document).on('click', '.move_method', function(e) {
             e.preventDefault(); // does not go through with the link.
 
             var $this = $(this);
             window.location.href = $this.attr('data-action');
+        });
+        $(function () {
+            $('.select2').select2()
         });
     </script>
 </body>

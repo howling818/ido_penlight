@@ -2,11 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Models\IdolGroup;
+use App\Models\Member;
 
 class GroupController extends Controller
 {
+    private $idolGroupModels;
+    private $idolGroupMemberModels;
+    private $idolGroupLists;
+    public function __construct()
+    {
+        $this->idolGroupModels = new IdolGroup();
+        $this->idolGroupMemberModels = new Member();
+        $this->idolGroupLists = $this->idolGroupModels->getList();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +28,14 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        return view(
+            'group.index',
+            [
+                'pageName'          => 'グループ',
+                'pageFlg'           => 'Groups',
+                'idolGroupLists'    => $this->idolGroupLists
+            ]
+        );
     }
 
     /**
@@ -24,17 +45,13 @@ class GroupController extends Controller
      */
     public function create()
     {
-        $idolGroupModels = new IdolGroup();
-
-        $idolGroupLists = $idolGroupModels->getList();
-
         return view(
-            'group.add',
+            'group.create',
             [
                 'pageName'          => 'グループ追加',
                 'pageFlg'           => 'Groups',
                 'subPageFlg'        => 'GroupsAdd',
-                'idolGroupLists'    => $idolGroupLists
+                'idolGroupLists'    => $this->idolGroupLists
             ]
         );
     }
@@ -47,51 +64,31 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        // 登録処理
+        $connection = DB::connection();
+        $connection->beginTransaction();
+        $registFlg = true;
+        $idolGroupId = null;
+        try {
+            $idolGroupId = $this->idolGroupModels->insert($request);
+            $connection->commit();
+        } catch (Exception $e) {
+            $connection->rollback();
+            $registFlg = false;
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $this->idolGroupLists = $this->idolGroupModels->getList();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view(
+            'group.store',
+            [
+                'pageName'          => 'グループ追加',
+                'pageFlg'           => 'Groups',
+                'subPageFlg'        => 'GroupsAdd',
+                'registFlg'         => $registFlg,
+                'idolGroupId'       => $idolGroupId,
+                'idolGroupLists'    => $this->idolGroupLists
+            ]
+        );
     }
 }
