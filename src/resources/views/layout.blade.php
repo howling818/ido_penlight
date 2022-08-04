@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -38,12 +40,6 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                         with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Widgets</p>
-                            </a>
-                        </li>
                         <li class="nav-item @if ($pageFlg=='Groups') menu-open @endif">
                             <a href="#" class="nav-link @if ($pageFlg=='Groups') active @endif">
                                 <i class="nav-icon fas fa-users"></i>
@@ -65,6 +61,18 @@
                                 </li>
                                 @endforeach
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('member.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-search"></i>
+                                <p>Search</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('member.create') }}" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>Add Member</p>
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -88,8 +96,12 @@
     <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('plugins/moment/moment-with-locales.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+    <!-- date-range-picker -->
+    <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('js/adminlte.min.js') }}"></script>
     <script>
@@ -102,6 +114,26 @@
         $(function () {
             $('.select2').select2()
         });
+        //Date picker
+        $('.birthday').daterangepicker({
+            timePicker: false,
+            singleDatePicker: true,
+            format: 'YYYY-MM-DD'
+        });
+
+        var forms = document.querySelectorAll('.needs-validation')
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+            })
     </script>
 </body>
 </html>

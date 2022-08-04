@@ -74,4 +74,29 @@ class Member extends Model
 
         return $data;
     }
+
+    public function insert($request)
+    {
+        $member_name = (!is_null($request->member_name)) ? str_replace(array(' ', '　'), '', $request->member_name) : null;
+        $member_kana = (!is_null($request->member_kana)) ? str_replace(array(' ', '　'), '', mb_convert_kana($request->member_kana, 'KVc')) : null;
+        $member_nickname = (!is_null($request->member_nickname)) ? str_replace(array(' ', '　'), '', $request->member_nickname) : null;
+
+        $entity = Member::create([
+            'group_id'          => $request->group_id,
+            'member_name'       => $member_name,
+            'member_kana'       => $member_kana,
+            'member_nickname'   => $member_nickname,
+            'birthday'          => $request->birthday,
+            'pen_light_id1'     => $request->pen_light_id1,
+            'pen_light_id2'     => $request->pen_light_id2,
+            'pen_light_id3'     => $request->pen_light_id3,
+            'twitter'           => $request->twitter,
+            'instagram'         => $request->instagram,
+            'tiktok'            => $request->tiktok,
+            'Youtube'           => $request->Youtube,
+            'is_display'        => 1,
+        ]);
+
+        return $entity->id;
+    }
 }

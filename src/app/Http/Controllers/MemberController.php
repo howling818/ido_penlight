@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Log;
 use App\Models\IdolGroup;
 use App\Models\Member;
 use App\Models\Penlight;
+use App\Http\Requests\Member\CreateRequest;
+use App\Http\Requests\Member\UpdateRequest;
 
 class MemberController extends Controller
 {
@@ -16,12 +18,14 @@ class MemberController extends Controller
     private $idolGroupMemberModels;
     private $penlightModels;
     private $idolGroupLists;
+    private $penlightLists;
     public function __construct()
     {
         $this->idolGroupModels = new IdolGroup();
         $this->idolGroupMemberModels = new Member();
         $this->penlightModels = new Penlight();
         $this->idolGroupLists = $this->idolGroupModels->getList();
+        $this->penlightLists = $this->penlightModels->list();
     }
 
     /**
@@ -31,7 +35,6 @@ class MemberController extends Controller
      */
     public function index(Request $request)
     {
-        $penlightLists = $this->penlightModels->list();
         $idolGroupMembers = $this->idolGroupMemberModels->search($request);
 
         return view(
@@ -40,7 +43,7 @@ class MemberController extends Controller
                 'pageName'          => 'メンバー一覧',
                 'pageFlg'           => 'Members',
                 'idolGroupLists'    => $this->idolGroupLists,
-                'penlightLists'     => $penlightLists,
+                'penlightLists'     => $this->penlightLists,
                 'idolGroupMembers'  => $idolGroupMembers,
                 'searchExistsFlg'   => $idolGroupMembers->isEmpty()
             ]
@@ -54,18 +57,48 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return view(
+            'member.create',
+            [
+                'pageName'          => 'メンバー追加',
+                'pageFlg'           => 'Members',
+                'pageFlg'           => 'AddMembers',
+                'idolGroupLists'    => $this->idolGroupLists,
+                'penlightLists'     => $this->penlightLists
+            ]
+        );
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\Member\CreateRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        //
+        // 登録処理
+        $connection = DB::connection();
+        $connection->beginTransaction();
+        $registFlg = true;
+        try {
+            $this->idolGroupMemberModels->insert($request);
+            $connection->commit();
+        } catch (Exception $e) {
+            $registFlg = false;
+            $connection->rollback();
+        }
+
+        return view(
+            'member.store',
+            [
+                'pageName'          => 'メンバー追加',
+                'pageFlg'           => 'Members',
+                'pageFlg'           => 'AddMembers',
+                'idolGroupLists'    => $this->idolGroupLists,
+                'registFlg'         => $registFlg
+            ]
+        );
     }
 
     /**
@@ -93,11 +126,11 @@ class MemberController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\Member\UpdateRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         //
     }

@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Search</button>
-                                    <button type="button" class="btn btn-info float-right move_method" data-action="{{ route('member.create') }}">Member Add</button>
+                                    <button type="button" class="btn btn-info float-right move_method" data-action="{{ route('member.create') }}">Add Member</button>
                                 </div>
                             </div>
                         </div>
